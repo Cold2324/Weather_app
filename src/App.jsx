@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import getWeather from './api/getWeather'
 export default function App() {
-  const [city, setCity] = useState('')
+  const [city, setCity] = useState('Lima')
   const [onSubmit, setOnSubmit] = useState(false)
-  const [resJSON, setResJSON] = useState(null)
+  const [resJSON, setResJSON] = useState({})
 
   useEffect(() => {
     getWeather(city)
@@ -38,9 +38,15 @@ export default function App() {
         <p className="text-bold text-[70px] text-gray-700">
           {resJSON?.location?.name}
         </p>
-        <p className="pl-5 text-bold text-[60px] text-gray-700">
-          {resJSON?.current?.temp_c}°
-        </p>
+        {resJSON.hasOwnProperty('error') ? (
+          <p className="pl-3 text-bold text-[30px] text-gray-700">
+            {resJSON?.error?.message}
+          </p>
+        ) : (
+          <p className="pl-5 text-bold text-[60px] text-gray-700">
+            {resJSON?.current?.temp_c}°
+          </p>
+        )}
       </section>
     </div>
   )
