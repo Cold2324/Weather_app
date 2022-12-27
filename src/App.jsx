@@ -3,12 +3,13 @@ import getWeather from './api/getWeather'
 export default function App() {
   const [city, setCity] = useState('')
   const [onSubmit, setOnSubmit] = useState(false)
-  const [resJSON, setResJSON] = useState(undefined)
+  const [resJSON, setResJSON] = useState(null)
 
   useEffect(() => {
     getWeather(city)
       .then((res) => setResJSON(res))
       .catch((e) => console.log(e))
+    setOnSubmit(false)
   }, [onSubmit])
 
   const handleChangeInput = (e) => {
@@ -22,15 +23,21 @@ export default function App() {
 
   return (
     <div className="w-[100%] h-screen bg-[url('./assets/cold.jpg')]">
-      <section>
+      <section className="p-5">
         <form onSubmit={handleSubmit}>
           <input
             onChange={handleChangeInput}
-            className="outline-none p-5 bg-transparent"
+            className="w-[100%] outline-none p-3 bg-white rounded-[10px] "
             type="text"
             placeholder="Lima"
+            value={city}
           />
         </form>
+      </section>
+      <section className="p-5 flex justify-center">
+        <p className="text-bold text-[70px] text-gray-700">
+          {resJSON?.location?.name}
+        </p>
       </section>
     </div>
   )
