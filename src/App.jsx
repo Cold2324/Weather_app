@@ -34,9 +34,12 @@ export default function App() {
           />
         </form>
       </section>
-      <section className="p-5 flex justify-center">
+      <section className="p-5 flex flex-col items-center justify-center">
         <p className="text-bold text-[70px] text-gray-700">
           {resJSON?.location?.name}
+        </p>
+        <p className="pl-5 text-bold text-[60px] text-gray-700">
+          {resJSON?.current?.temp_c}°
         </p>
       </section>
     </div>
