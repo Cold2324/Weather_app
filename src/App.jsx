@@ -3,7 +3,7 @@ import { cold, hot } from './utils/theme'
 import getWeather from './api/getWeather'
 
 export default function App() {
-  const [city, setCity] = useState('Lima')
+  const [city, setCity] = useState('London')
   const [onSubmit, setOnSubmit] = useState(false)
   const [resJSON, setResJSON] = useState({})
 
